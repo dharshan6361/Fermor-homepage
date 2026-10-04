@@ -32,11 +32,14 @@ export function Nav() {
   }, [open]);
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors ${
-        scrolled || open
-          ? "border-b border-line bg-paper/90 backdrop-blur"
-          : "border-b border-transparent"
+        open
+          ? "border-b border-line bg-paper"
+          : scrolled
+            ? "border-b border-line bg-paper/90 backdrop-blur"
+            : "border-b border-transparent"
       }`}
     >
       <nav
@@ -88,11 +91,12 @@ export function Nav() {
           </svg>
         </button>
       </nav>
+    </header>
 
       {open && (
         <div
           id="mobile-menu"
-          className="fixed inset-x-0 top-16 bottom-0 overflow-y-auto bg-paper px-5 pb-10 pt-4 md:hidden"
+          className="fixed inset-x-0 top-16 bottom-0 z-40 overflow-y-auto bg-paper px-5 pb-10 pt-4 md:hidden"
         >
           <ul className="divide-y divide-line">
             {links.map((l) => (
@@ -124,6 +128,6 @@ export function Nav() {
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 }

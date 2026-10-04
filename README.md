@@ -1,55 +1,60 @@
 # Fermor homepage
 
-A redesigned homepage for Fermor, built with Next.js (App Router), React, plain JavaScript and Tailwind CSS v4.
+My take on a new homepage for Fermor. Built with Next.js, React (JavaScript) and Tailwind CSS.
 
-- **Live:** _add your Vercel URL here after deploying_
-- **Repo:** _add your GitHub URL here_
+Live: <add Vercel link>
+Code: <add GitHub link>
 
 ## Run it
 
-```bash
+```
 npm install
-npm run dev      # http://localhost:3000
-npm run build && npm start
-npm run lint
+npm run dev
 ```
 
-Node 20+ recommended.
+Then open http://localhost:3000.
 
-## Deploy
+## Screenshots
 
-Push to GitHub, then import the repo at vercel.com/new. No environment variables or config needed.
+Desktop
 
-## What the page says, and why
+![Desktop hero](screenshots/desktop-hero.png)
 
-Fermor's own site has two sides: free, transparent calculators for India, and a wider product (Market, Portfolio, Act, Ask) built around **Understand. Act. Grow.** I wanted the homepage to hold both without feeling split, so:
+![Full page on desktop](screenshots/desktop-full.png)
 
-1. **Hero: a working SIP forecast instead of an illustration.** A visitor can do something useful in the first five seconds. Sliders update the headline number and chart live, and "Show the maths" reveals the formula with their own inputs filled in. That one component carries the brand idea: no black boxes.
-2. **Understand / Act / Grow as interactive tabs.** Each pillar gets a small, real interaction (spending breakdown, set up a SIP, goal projection) rather than a screenshot.
-3. **Calculators as a grid showing each formula.** Links go to the live calculators on fermor.in.
-4. **Ask demo.** Scripted, clearly labelled sample conversation. No model is called.
-5. **Principles, insights, FAQ, waitlist, footer.** The footer keeps the "not a SEBI-registered adviser" disclosure, and the Ask section repeats it, because trust is the product here.
+Mobile
 
-## Design decisions
+<img src="screenshots/mobile-hero.png" width="300" alt="Mobile hero" />
+<img src="screenshots/mobile-menu.png" width="300" alt="Mobile menu" />
 
-- **Palette:** warm paper background, deep green ink, moss as the single accent, a small amber highlight. Green reads as growth without the generic fintech blue or purple gradient.
-- **Type:** Fraunces (serif display) for headlines and big numbers, Inter for UI text. The serif gives numbers weight and keeps it from looking like a template. Both are self-hosted via `@fontsource-variable`, so there is no layout shift or third-party request.
-- **Numbers:** Indian grouping (₹12,34,567) and lakh/crore short forms throughout. Tabular figures on anything that changes live.
-- **Motion:** one gentle scroll-reveal and a typewriter in the Ask demo. Both are disabled under `prefers-reduced-motion`.
-- **Accessibility:** semantic landmarks, labelled sliders with live `<output>`, keyboard-navigable tabs (arrow keys), native `<details>` for the FAQ, visible focus states, Escape closes the mobile menu.
+## What I did
 
-## Structure
+Fermor's site is half free calculators and half a bigger investing app. I wanted the homepage to show both, so the top of the page is a working SIP calculator rather than a picture. You move the sliders and the result changes, and "Show the maths" shows the formula with your numbers in it. That fits Fermor's "no black boxes" idea.
+
+Below that:
+
+- Understand / Act / Grow as three tabs, each with a small interactive demo
+- A grid of calculators linking to the real ones on fermor.in
+- A sample "Ask" chat (scripted, no AI behind it)
+- A few principles, three article cards, FAQ, a waitlist form and a footer
+
+## Choices
+
+- Colours: cream background with dark green. I stayed away from the usual blue fintech look.
+- Fonts: Fraunces for headings and big numbers, Inter for everything else.
+- Amounts use Indian formatting (lakh and crore).
+- Works on mobile; the menu collapses and the layout stacks.
+- The footer has the "not a SEBI-registered adviser" note, since that is on the real site.
+
+## Not done
+
+- The numbers in the demos are sample data.
+- The waitlist form checks the email but doesn't send it anywhere yet.
+
+## Files
 
 ```
-app/            layout.jsx, global styles and design tokens, page.jsx
-components/     one file per section (Hero, Pillars, Calculators, AskDemo, ...)
-lib/finance.js  pure SIP / EMI maths and INR formatting
+app/          page, layout, styles
+components/   one file per section
+lib/finance.js   the SIP and EMI formulas
 ```
-
-Calculation logic lives apart from the UI so it can be read and unit-tested on its own.
-
-## Known limits
-
-- All figures in the product panels are sample data.
-- The waitlist form validates and shows a success state, but does not submit anywhere. Connect it to an API route or form service to collect emails.
-- "Log in" and the calculator/article links point to the live fermor.in pages.
