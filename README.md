@@ -1,6 +1,6 @@
 # Fermor homepage
 
-A redesigned homepage for Fermor, built with Next.js (App Router), React, TypeScript and Tailwind CSS v4.
+A redesigned homepage for Fermor, built with Next.js (App Router), React, plain JavaScript and Tailwind CSS v4.
 
 - **Live:** _add your Vercel URL here after deploying_
 - **Repo:** _add your GitHub URL here_
@@ -41,9 +41,9 @@ Fermor's own site has two sides: free, transparent calculators for India, and a 
 ## Structure
 
 ```
-app/            layout, global styles and design tokens, page
+app/            layout.jsx, global styles and design tokens, page.jsx
 components/     one file per section (Hero, Pillars, Calculators, AskDemo, ...)
-lib/finance.ts  pure SIP / EMI maths and INR formatting
+lib/finance.js  pure SIP / EMI maths and INR formatting
 ```
 
 Calculation logic lives apart from the UI so it can be read and unit-tested on its own.

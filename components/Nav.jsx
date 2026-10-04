@@ -23,7 +23,7 @@ export function Nav() {
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", onKey);
     return () => {
       window.removeEventListener("keydown", onKey);

@@ -20,11 +20,11 @@ const qa = [
 export function AskDemo() {
   const [i, setI] = useState(0);
   const [shown, setShown] = useState(qa[0].a.length);
-  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+  const timer = useRef(null);
 
   useEffect(() => () => { if (timer.current) clearInterval(timer.current); }, []);
 
-  function pick(n: number) {
+  function pick(n) {
     if (timer.current) clearInterval(timer.current);
     setI(n);
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

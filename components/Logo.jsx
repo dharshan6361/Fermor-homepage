@@ -1,4 +1,4 @@
-export function Logo({ className = "" }: { className?: string }) {
+export function Logo({ className = "" }) {
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
       <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">

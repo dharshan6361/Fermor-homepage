@@ -1,9 +1,8 @@
-import type { Metadata } from "next";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/fraunces";
 import "./globals.css";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Fermor — Understand. Act. Grow.",
   description:
     "Fermor brings your investments, spending and goals into one clear picture, with calculators that show their working. Built for India.",
@@ -15,7 +14,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="min-h-screen">{children}</body>

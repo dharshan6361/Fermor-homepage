@@ -2,23 +2,7 @@
 import { useId, useMemo, useState } from "react";
 import { formatINR, formatShort, sipFutureValue, sipSeries } from "@/lib/finance";
 
-function Slider({
-  label,
-  value,
-  min,
-  max,
-  step,
-  onChange,
-  display,
-}: {
-  label: string;
-  value: number;
-  min: number;
-  max: number;
-  step: number;
-  onChange: (v: number) => void;
-  display: string;
-}) {
+function Slider({ label, value, min, max, step, onChange, display }) {
   const id = useId();
   const fill = ((value - min) / (max - min)) * 100;
   return (
@@ -38,22 +22,22 @@ function Slider({
         max={max}
         step={step}
         value={value}
-        style={{ ["--fill" as string]: `${fill}%` }}
+        style={{ "--fill": `${fill}%` }}
         onChange={(e) => onChange(Number(e.target.value))}
       />
     </div>
   );
 }
 
-function Chart({ data }: { data: ReturnType<typeof sipSeries> }) {
+function Chart({ data }) {
   const W = 480;
   const H = 190;
   const pad = { l: 4, r: 10, t: 12, b: 22 };
   const maxV = Math.max(...data.map((d) => d.value), 1);
-  const x = (i: number) => pad.l + (i / (data.length - 1)) * (W - pad.l - pad.r);
-  const y = (v: number) => pad.t + (1 - v / maxV) * (H - pad.t - pad.b);
+  const x = (i) => pad.l + (i / (data.length - 1)) * (W - pad.l - pad.r);
+  const y = (v) => pad.t + (1 - v / maxV) * (H - pad.t - pad.b);
 
-  const line = (key: "value" | "invested") =>
+  const line = (key) =>
     data.map((d, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(d[key]).toFixed(1)}`).join(" ");
   const area = `${line("value")} L${x(data.length - 1)},${H - pad.b} L${x(0)},${H - pad.b} Z`;
   const last = data[data.length - 1];

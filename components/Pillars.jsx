@@ -25,7 +25,7 @@ const tabs = [
     body: "Turn a vague wish into a number and a date. Move one input and watch how much it changes the outcome.",
     points: ["Goal tracking with projections", "Scenario forecasting", "A simple financial health check"],
   },
-] as const;
+];
 
 const spend = [
   { k: "Food", v: 12480, c: "bg-moss" },

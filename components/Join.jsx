@@ -4,9 +4,9 @@ import { Reveal } from "./Reveal";
 
 export function Join() {
   const [email, setEmail] = useState("");
-  const [state, setState] = useState<"idle" | "error" | "done">("idle");
+  const [state, setState] = useState("idle");
 
-  function submit(e: React.FormEvent) {
+  function submit(e) {
     e.preventDefault();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim())) {
       setState("error");

@@ -1,16 +1,8 @@
 "use client";
 import { useEffect, useRef } from "react";
 
-export function Reveal({
-  children,
-  className = "",
-  delay = 0,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
+export function Reveal({ children, className = "", delay = 0 }) {
+  const ref = useRef(null);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
