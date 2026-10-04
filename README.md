@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fermor homepage
 
-## Getting Started
+A redesigned homepage for Fermor, built with Next.js (App Router), React, TypeScript and Tailwind CSS v4.
 
-First, run the development server:
+- **Live:** _add your Vercel URL here after deploying_
+- **Repo:** _add your GitHub URL here_
+
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build && npm start
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Node 20+ recommended.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Push to GitHub, then import the repo at vercel.com/new. No environment variables or config needed.
 
-## Learn More
+## What the page says, and why
 
-To learn more about Next.js, take a look at the following resources:
+Fermor's own site has two sides: free, transparent calculators for India, and a wider product (Market, Portfolio, Act, Ask) built around **Understand. Act. Grow.** I wanted the homepage to hold both without feeling split, so:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Hero: a working SIP forecast instead of an illustration.** A visitor can do something useful in the first five seconds. Sliders update the headline number and chart live, and "Show the maths" reveals the formula with their own inputs filled in. That one component carries the brand idea: no black boxes.
+2. **Understand / Act / Grow as interactive tabs.** Each pillar gets a small, real interaction (spending breakdown, set up a SIP, goal projection) rather than a screenshot.
+3. **Calculators as a grid showing each formula.** Links go to the live calculators on fermor.in.
+4. **Ask demo.** Scripted, clearly labelled sample conversation. No model is called.
+5. **Principles, insights, FAQ, waitlist, footer.** The footer keeps the "not a SEBI-registered adviser" disclosure, and the Ask section repeats it, because trust is the product here.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Design decisions
 
-## Deploy on Vercel
+- **Palette:** warm paper background, deep green ink, moss as the single accent, a small amber highlight. Green reads as growth without the generic fintech blue or purple gradient.
+- **Type:** Fraunces (serif display) for headlines and big numbers, Inter for UI text. The serif gives numbers weight and keeps it from looking like a template. Both are self-hosted via `@fontsource-variable`, so there is no layout shift or third-party request.
+- **Numbers:** Indian grouping (₹12,34,567) and lakh/crore short forms throughout. Tabular figures on anything that changes live.
+- **Motion:** one gentle scroll-reveal and a typewriter in the Ask demo. Both are disabled under `prefers-reduced-motion`.
+- **Accessibility:** semantic landmarks, labelled sliders with live `<output>`, keyboard-navigable tabs (arrow keys), native `<details>` for the FAQ, visible focus states, Escape closes the mobile menu.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+app/            layout, global styles and design tokens, page
+components/     one file per section (Hero, Pillars, Calculators, AskDemo, ...)
+lib/finance.ts  pure SIP / EMI maths and INR formatting
+```
+
+Calculation logic lives apart from the UI so it can be read and unit-tested on its own.
+
+## Known limits
+
+- All figures in the product panels are sample data.
+- The waitlist form validates and shows a success state, but does not submit anywhere. Connect it to an API route or form service to collect emails.
+- "Log in" and the calculator/article links point to the live fermor.in pages.
