@@ -2,8 +2,8 @@
 
 My take on a new homepage for Fermor. Built with Next.js, React (JavaScript) and Tailwind CSS.
 
-Live: <add Vercel link>
-Code: <add GitHub link>
+Live: https://fermor-homepage-lyart.vercel.app/
+Code: https://github.com/dharshan6361/Fermor-homepage
 
 ## Run it
 
